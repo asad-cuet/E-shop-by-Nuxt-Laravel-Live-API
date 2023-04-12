@@ -1,9 +1,13 @@
 import { defineStore } from 'pinia'
 import axios from "axios";
+import {useAuth} from '@/stores/auth.js'
+
 
 
 
 export const useCart = defineStore('cart', () => {
+
+    const auth=useAuth()
 
     const cartContent=ref({})
     const cartLength=ref(0)
@@ -48,6 +52,11 @@ export const useCart = defineStore('cart', () => {
 
     function addToCart(product_id,quantity)
     {
+        if(!auth.isAuthenticated)
+        {
+            alert('Login First')
+            return
+        }
         if(cartContent.value.hasOwnProperty(product_id))
         {
             alert("This product already added in Cart")
