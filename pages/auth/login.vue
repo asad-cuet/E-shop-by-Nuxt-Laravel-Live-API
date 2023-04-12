@@ -34,8 +34,8 @@ auth.isLoading=false
 //     middleware:['is-guest']
 // })
 
-const email=ref(null)
-const password=ref(null)
+const email=ref('user@gmail.com')
+const password=ref(12345678)
 
 const form=ref({})
 function handleLogin()

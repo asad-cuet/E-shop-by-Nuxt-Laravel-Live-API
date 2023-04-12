@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <NuxtLink class="nav-link {{Request::is('/') ? 'active':'' }}" aria-current="page" to="/products">Products</NuxtLink>
+              <NuxtLink class="nav-link {{Request::is('/') ? 'active':'' }}" aria-current="page" to="/">Products</NuxtLink>
             </li>
 
             <li class="nav-item">
@@ -54,11 +54,11 @@
        
 
             <li v-if="!auth.isLoggedIn()" class="nav-item">
-                <NuxtLink class="nav-link" to="/auth/login">Login</NuxtLink>
+                <NuxtLink class="nav-link bg-success btn text-white" to="/auth/login">Login</NuxtLink>
             </li>
 
             <li v-if="!auth.isLoggedIn()" class="nav-item">
-                <NuxtLink class="nav-link" to="/auth/register">Register</NuxtLink>
+                <NuxtLink class="nav-link bg-primary btn text-white" style="margin-left:2px;" to="/auth/register">Register</NuxtLink>
             </li>
 
 
@@ -100,8 +100,11 @@
             </li>
 
             <li v-if="auth.isLoggedIn()" class="nav-item">
-                  <button class="nav-link" @click="auth.logout()">
+                  <button v-if="!auth.isLoading" class="nav-link bg-danger text-white btn" @click="auth.logout()">
                             Logout
+                  </button>
+                  <button v-else class="nav-link bg-danger text-white btn" @click="auth.logout()" disabled>
+                            Loading
                   </button>
             </li>
 

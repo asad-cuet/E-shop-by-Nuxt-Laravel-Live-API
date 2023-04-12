@@ -60,6 +60,7 @@ export const useCart = defineStore('cart', () => {
                 quantity: quantity
             }
             cartLength.value++
+            alert("Product added in Cart")
         }
 
     }
@@ -157,7 +158,7 @@ export const useCart = defineStore('cart', () => {
 
 
 
-    return { cartContent,cartLength,totalCost, addToCart,cartProducts,removeCartItem, incrementQuantity, decrementQuantity, proceedOrder }
+    return { cartContent,cartLength,totalCost, addToCart,cartProducts,removeCartItem, incrementQuantity, decrementQuantity, proceedOrder,resetCart }
 },{
   persist: true,
 })

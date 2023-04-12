@@ -1,7 +1,10 @@
 import { defineStore } from 'pinia'
+import { useCart } from '@/stores/cart.js'
 import axios from "axios";
 
+
 export const useAuth = defineStore('auth', () => {
+    const myCart=useCart()
     const isAuthenticated = ref(false)
     const response=ref({})
     const user=ref({
@@ -64,6 +67,7 @@ export const useAuth = defineStore('auth', () => {
          }) 
         .catch((error)=>{
             console.log(error)
+            alert('Invalid Email or Password')
             isLoading.value=false
          })
     }
@@ -78,6 +82,7 @@ export const useAuth = defineStore('auth', () => {
                 {
                     isAuthenticated.value=false
                     user.value={}
+                    myCart.resetCart()
                     isLoading.value=false
                     navigateTo('/auth/login')
                 }
