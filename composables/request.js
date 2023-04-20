@@ -35,6 +35,7 @@ export const useRequest=()=> {
         isLoading.value=true
         return axios.post(baseUrl+'/'+api,postData)      
               .then((res)=>{
+                isLoading.value=false
                 response.value=res.data
                 console.log(response.value)
                 if(response.value.success)
@@ -58,6 +59,7 @@ export const useRequest=()=> {
         isLoading.value=true
         return axios.post(baseUrl+'/'+api,postData)      
               .then((res)=>{
+                isLoading.value=false
                 response.value=res.data
                 console.log(response.value)
                 if(response.value.success)
@@ -76,6 +78,6 @@ export const useRequest=()=> {
 
 
     return {
-        getRequest,postRequest,postRequestData
+        isLoading,getRequest,postRequest,postRequestData
     }
 }

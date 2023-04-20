@@ -11,7 +11,7 @@
         <div class="container my-5">
             <div class="card shadow cartitems">  <!-- cartitem for div reload -->
                 <div v-if="myCart.cartLength">
-                    <div class="card-body">
+                    <div v-if="myCart.cartItems.length" class="card-body">
                         <!-- @foreach ($product as $item) -->
                         <div v-for="content in myCart.cartItems" class="row product_data">
             
@@ -43,6 +43,9 @@
                         
                         
                         <!-- @endforeach -->
+                    </div>
+                    <div v-else  class="card-body">
+                        <h4>Loading..</h4>
                     </div>
                     <div class="card-footer text-center">
                         <h6>Total Price : $ <span class="total">{{ myCart.totalCost }}</span></h6>
@@ -80,6 +83,5 @@ const myCart=useCart()
 
 myCart.cartProducts()
 console.log("Cart Page",myCart.cartItems)
-
 
 </script>

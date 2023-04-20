@@ -68,9 +68,9 @@
                         </div>
                         <div class="col-md-7">
                             <div class="card">
-                                    <div class="card-body">
+                                    <div v-if="myCart.cartLength " class="card-body">
                                         <!-- @if($cartitems->count()>0) -->
-                                        <div v-if="myCart.cartProducts().length">
+                                        <div v-if="myCart.cartItems.length">
                                                 Order Details
                                                 <hr>
                                                 <table class="table table-striped table-bordered">
@@ -85,13 +85,13 @@
                                                         <tbody>
 
 
-                                                                <tr v-for="content in myCart.cartProducts()">
+                                                                <tr v-for="content in myCart.cartItems">
                                                                         <td>
                                                                                 <img :src="content.image" style="width:50px;" alt="Product Image">
                                                                         </td>
                                                                         <td>{{ content.name }}</td>
                                                                         <td>{{ content.quantity }}</td>
-                                                                        <td>${{ content.selling_price }}</td>
+                                                                        <td>${{ content.price }}</td>
                                                                 </tr>
         
                                                             <!-- @endforeach -->
@@ -109,9 +109,12 @@
                                         </div>
 
                                         <div v-else>
-                                            <h4 class="text-center">No products in Cart</h4>
+                                            <h4 class="text-center">Loading..</h4>
                                         </div>
 
+                                    </div>
+                                    <div v-else>
+                                        <h4 class="text-center">No products in Cart</h4>
                                     </div>
                             </div>
                         </div>
