@@ -13,7 +13,7 @@
                 <div v-if="myCart.cartLength">
                     <div class="card-body">
                         <!-- @foreach ($product as $item) -->
-                        <div v-for="content in myCart.cartItems" class="row product_data">
+                        <div v-for="content in myCart.cartProducts()" class="row product_data">
             
                                 <div class="col-md-2 my-auto">
                                     <img :src="content.image" class="w-50" alt="Image">
@@ -22,7 +22,7 @@
                                     <h6>{{ content.name }}</h6>
                                 </div>
                                 <div class="col-md-2 my-auto">
-                                    <h6>$ {{ content.price }}</h6>
+                                    <h6>$ {{ content.selling_price }}</h6>
                                 </div>
                                 <div class="col-md-3 my-auto">
                                     <input type="hidden" value="" class="cart_id">
@@ -55,7 +55,7 @@
                     <div class="card-body text-center">
                         <h2>Your <i class="fa fa-shopping-cart"> Cart is empty</i></h2>
                         <br>
-                        <NuxtLink to="/" class="btn btn-outline-primary">Continue Shoppinh</NuxtLink>
+                        <NuxtLink to="/products" class="btn btn-outline-primary">Continue Shoppinh</NuxtLink>
                     </div>
 
                 </div>
@@ -76,10 +76,7 @@ const auth=useAuth()
 auth.authGuard()
 const myCart=useCart()
 
-
-
-myCart.cartProducts()
-console.log("Cart Page",myCart.cartItems)
+console.log(myCart.cartProducts())
 
 
 </script>
