@@ -94,6 +94,19 @@ export const useCart = defineStore('cart', () => {
             checkCartLength()
         }
     }
+    async function emptyCart()
+    {
+        postData.value={
+            user_id:auth.user.user_id,
+        }
+
+        const apiRes=await myRequest.postRequest('empty-cart',postData.value)
+        if(apiRes)
+        {
+            cartProducts()
+            checkCartLength()
+        }
+    }
 
     async function incrementQuantity(_id)
     {
@@ -133,8 +146,7 @@ export const useCart = defineStore('cart', () => {
     function proceedOrder(formData)
     {
         isLoading.value=true
-        console.log(cartProducts())
-        formData.carts= cartProducts()
+        formData.carts= cartItems.value
         axios.post(baseUrl+'/proceed-order',formData)      
               .then((res)=>{
                 response.value=res.data
@@ -142,7 +154,7 @@ export const useCart = defineStore('cart', () => {
                 {
                     isLoading.value=false
                     alert('Order submitted successfully')
-                    resetCart()
+                    emptyCart()
                     navigateTo('/orders')
                 }
                }) 
@@ -155,7 +167,7 @@ export const useCart = defineStore('cart', () => {
 
 
 
-    return { cartLength,totalCost,cartItems,cartProducts,addToCart,removeCartItem, incrementQuantity, decrementQuantity, proceedOrder,resetCart, checkCartLength }
+    return { cartLength,totalCost,cartItems,cartProducts,addToCart,removeCartItem, incrementQuantity, decrementQuantity, proceedOrder,resetCart, checkCartLength, emptyCart }
 },{
   persist: true,
 })
