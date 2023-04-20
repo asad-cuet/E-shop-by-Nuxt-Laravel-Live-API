@@ -62,6 +62,7 @@ export const useAuth = defineStore('auth', () => {
           {
                 doLogin(response)
                 isLoading.value=false
+                myCart.checkCartLength()
                 navigateTo('/auth/profile')
           }
          }) 

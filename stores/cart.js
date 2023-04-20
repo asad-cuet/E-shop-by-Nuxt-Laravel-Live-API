@@ -122,7 +122,10 @@ export const useCart = defineStore('cart', () => {
     function resetCart()
     {
         // isLoading.value=false
-        // response.value={}
+        postData.value={}
+        cartItems.value={}
+        totalCost.value=0
+        cartLength.value=0
     }
 
 
@@ -151,7 +154,7 @@ export const useCart = defineStore('cart', () => {
 
 
 
-    return { cartLength,totalCost,cartItems,cartProducts,addToCart,removeCartItem, incrementQuantity, decrementQuantity, proceedOrder,resetCart }
+    return { cartLength,totalCost,cartItems,cartProducts,addToCart,removeCartItem, incrementQuantity, decrementQuantity, proceedOrder,resetCart, checkCartLength }
 },{
   persist: true,
 })
