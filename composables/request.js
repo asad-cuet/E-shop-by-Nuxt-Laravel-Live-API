@@ -4,7 +4,7 @@ export const useRequest=()=> {
 
     const isLoading=ref(false)  
     const response=ref({})  
-    const baseUrl='http://127.0.0.1:8000/api'   //'https://eshop.asad-pro.com/api'
+    const baseUrl='https://eshop.asad-pro.com/api'
 
     const getRequest=(api)=>{
         isLoading.value=true

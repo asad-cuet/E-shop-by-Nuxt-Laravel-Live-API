@@ -13,9 +13,9 @@ export const useCart = defineStore('cart', () => {
     const cartItems=ref({})
 
 
-    // const isLoading=ref(false)
-    // const baseUrl='https://eshop.asad-pro.com/api'
-    // const response=ref({})
+    const isLoading=ref(false)
+    const baseUrl='https://eshop.asad-pro.com/api'
+    const response=ref({})
 
 
 
@@ -128,25 +128,25 @@ export const useCart = defineStore('cart', () => {
 
     function proceedOrder(formData)
     {
-        // isLoading.value=true
-        // console.log(cartProducts())
-        // formData.carts= cartProducts()
-        // axios.post(baseUrl+'/proceed-order',formData)      
-        //       .then((res)=>{
-        //         response.value=res.data
-        //         if(response.value.success)
-        //         {
-        //             isLoading.value=false
-        //             alert('Order submitted successfully')
-        //             resetCart()
-        //             navigateTo('/orders')
-        //         }
-        //        }) 
-        //       .catch((error)=>{
-        //           console.log(error)
-        //           alert('Order submission falied')
-        //           isLoading.value=false
-        //        })
+        isLoading.value=true
+        console.log(cartProducts())
+        formData.carts= cartProducts()
+        axios.post(baseUrl+'/proceed-order',formData)      
+              .then((res)=>{
+                response.value=res.data
+                if(response.value.success)
+                {
+                    isLoading.value=false
+                    alert('Order submitted successfully')
+                    resetCart()
+                    navigateTo('/orders')
+                }
+               }) 
+              .catch((error)=>{
+                  console.log(error)
+                  alert('Order submission falied')
+                  isLoading.value=false
+               })
     }
 
 
